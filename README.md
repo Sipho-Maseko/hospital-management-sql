@@ -1,7 +1,7 @@
-# Hospital Patient Management System (SQL Architecture)
+# Hospital Patient Management System (SQL Architecture & Python Integration)
 
 ## Overview
-A robust relational database system designed to manage core hospital operations, patient records, and financial billing. Built with SQL Server, this project demonstrates advanced multi-table entity-relationship (ER) modeling, data integrity enforcement via triggers, and complex operational querying for healthcare administration.
+A robust relational database system designed to manage core hospital operations, patient records, and financial billing, enhanced with Python-based automation and API integrations. Built with SQL Server, this project demonstrates advanced multi-table entity-relationship (ER) modeling, data integrity enforcement via triggers, complex operational querying, and automated data pipelines.
 
 ## Database Architecture
 The system is built on a highly normalized relational schema comprising the following core tables:
@@ -25,11 +25,19 @@ This repository includes 10 complex operational queries designed to solve real-w
 9. **High-Value Accounts:** Sorting and flagging critical patient invoices for audit purposes.
 10. **Prescription Fulfillment:** Tracking pending pharmacy medication orders.
 
+## Python Integrations (Automation & API)
+To bridge the gap between backend data and external applications, this project includes:
+* **Automated CSV Pipeline (`import_data.py`):** A Python automation script utilizing `pyodbc` and the `csv` library to parse external patient data and execute bulk SQL inserts, simulating real-world data migration.
+* **REST API Wrapper (`api.py`):** A lightweight `FastAPI` application that serves SQL database queries (e.g., high-value audit invoices) to external frontend dashboards via JSON endpoints.
+
 ## Technical Stack
-* **Language:** SQL (T-SQL)
-* **Environment:** Microsoft SQL Server (SSMS) / Azure Data Studio
-* **Concepts Demonstrated:** DDL/DML, Primary/Foreign Key Constraints, Triggers, Aggregate Functions, Multi-table Joins, Computed Columns.
+* **Languages:** SQL (T-SQL), Python
+* **Database Environment:** Microsoft SQL Server (SSMS) / Azure Data Studio
+* **Libraries/Frameworks:** FastAPI, pyodbc, csv
+* **Concepts Demonstrated:** DDL/DML, Primary/Foreign Key Constraints, Triggers, Aggregate Functions, Multi-table Joins, REST APIs, JSON formatting, CSV Data Parsing.
 
 ## How to Run
-1. Execute `01_schema_and_triggers.sql` to initialize the database, construct the tables, and deploy the auto-update triggers.
-2. Execute `02_hospital_queries.sql` to view the operational business logic and data extraction methods.
+1. **Database Setup:** Execute `01_schema_and_triggers.sql` to initialize the database, construct the tables, and deploy the auto-update triggers.
+2. **Operational Logic:** Execute `02_hospital_queries.sql` to view the operational business logic and data extraction methods.
+3. **Data Import Automation:** Run `python import_data.py` to automate the bulk insertion of dummy records from `patients.csv`.
+4. **Launch REST API:** Run the FastAPI server to expose the SQL data as JSON endpoints for external systems.
